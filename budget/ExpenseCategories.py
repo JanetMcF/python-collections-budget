@@ -16,19 +16,25 @@ def main():
             print('Sets are NOT equal by subset test')
 
 
-    setup = '''
+    print(timeit.timeit(stmt="expenses.categorize_for_loop()",
+                        setup =
+                        '''
 from . import Expense
 expenses = Expense.Expenses()
 expenses.read_expenses('data/spending_data.csv')
-'''
-    print(timeit.timeit("expenses.categorize_for_loop()", setup, number=100000, globals=globals()))
+                        ''',
+                        number=100000,
+                        globals=globals()))
 
-    setup = '''
+    print(timeit.timeit(stmt="expenses.categorize_set_comprehension()",
+                        setup =
+                        '''
 from . import Expense
 expenses = Expense.Expenses()
 expenses.read_expenses('data/spending_data.csv')
-'''
-    print(timeit.timeit("expenses.categorize_set_comprehension()", setup, number=100000, globals=globals()))
+                        ''',
+                        number=100000,
+                        globals=globals()))
 
     fig,ax=plt.subplots()
     labels = ('Necessary', 'Food', 'Unnecessary')
