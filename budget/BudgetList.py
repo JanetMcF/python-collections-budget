@@ -30,10 +30,11 @@ class BudgetList:
 
     def __next__(self):
         try:
-            return next(self.iter_e)
+            return self.iter_e.__next__()
         except:
             raise StopIteration
-            return next(self.iter_o)
+            return self.iter_o.__next__()
+
 def main():
     myBudgetList = BudgetList(1200)
     expenses = Expense.Expenses()
